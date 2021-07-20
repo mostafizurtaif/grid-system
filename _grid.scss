@@ -20,6 +20,8 @@ $gutter: 1rem;
     }
 
     &__col {
+        background-color: royalblue;
+        height: 12rem;
         float: left;
 
         &:not(:last-of-type) {
@@ -28,12 +30,6 @@ $gutter: 1rem;
         
         &:only-of-type {
             margin-right: 0;
-        }
-
-        @for $i from 1 through 4 {
-            &--#{$i * 25} {
-                width: $i * 25 * 1%;
-            }
         }
     }
 }
