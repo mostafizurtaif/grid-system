@@ -1,33 +1,39 @@
-$gutter: 1rem;
+// from _variables.scss and _mixins.scss
+$gutter-x: 1rem;
+$gutter-y: .5rem;
 
-.grid {
-    &__row {
-        @for $i from 1 through 3 {
-            &--col-#{$i + 1} {
-                $minus: ($i * $gutter) / ($i + 1);
-                
-                @for $j from (4 - $i) through 1 {
-                    .grid__col--#{$j * 25} {width: calc(#{$j * 25 * 1%} - #{$minus});}
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+
+
+// MAIN RULES
+.row {
+    &:not(:last-of-type) {
+        margin-bottom: $gutter-y;
+    }
+
+    @for $i from 3 through 1 {
+        &--col-#{$i + 1} {
+            @for $j from 1 through $i {
+                .col--#{$j}of#{$i + 1} {
+                    width: calc(#{$j} * ((100% - #{$i} * #{$gutter-x}) / #{$i + 1}) + #{$j - 1} * #{$gutter-x});
                 }
             }
         }
-
-        &::after {
-            content: "";
-            display: block;
-            clear: both;
-        }
     }
-
-    &__col {
+    
+    [class^="col--"] {
         float: left;
 
         &:not(:last-of-type) {
-            margin-right: $gutter;
-        }
-        
-        &:only-of-type {
-            margin-right: 0;
+            margin-right: $gutter-x;
         }
     }
+
+    @include clearfix;
 }
