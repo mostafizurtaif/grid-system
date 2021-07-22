@@ -12,28 +12,28 @@ $gutter-y: .5rem;
 
 
 // MAIN RULES
-.row {
+[class^="row--"] {
     &:not(:last-of-type) {
         margin-bottom: $gutter-y;
     }
 
-    @for $i from 3 through 1 {
-        &--col-#{$i + 1} {
-            @for $j from 1 through $i {
-                .col--#{$j}of#{$i + 1} {
-                    width: calc(#{$j} * ((100% - #{$i} * #{$gutter-x}) / #{$i + 1}) + #{$j - 1} * #{$gutter-x});
-                }
+    @include clearfix;
+}
+
+@for $i from 3 through 1 {
+    .row--col-#{$i + 1} {
+        @for $j from 1 through $i {
+            .col--#{$j}of#{$i + 1} {
+                width: calc(#{$j} * ((100% - #{$i} * #{$gutter-x}) / #{$i + 1}) + #{$j - 1} * #{$gutter-x});
             }
         }
     }
-    
-    [class^="col--"] {
-        float: left;
+}
 
-        &:not(:last-of-type) {
-            margin-right: $gutter-x;
-        }
+[class^="col--"] {
+    float: left;
+
+    &:not(:last-of-type) {
+        margin-right: $gutter-x;
     }
-
-    @include clearfix;
 }
