@@ -11,29 +11,28 @@ $gutter-y: .5rem;
 }
 
 
-// MAIN RULES
-[class^="row--"] {
+// MAIN RULES.row {
+.row {
     &:not(:last-of-type) {
         margin-bottom: $gutter-y;
     }
 
     @include clearfix;
-}
 
-@for $i from 3 through 1 {
-    .row--col-#{$i + 1} {
+    @for $i from 3 through 1 {
         @for $j from 1 through $i {
-            .col--#{$j}of#{$i + 1} {
+            @at-root .col--#{$j}of#{($i + 1)} {
                 width: calc(#{$j} * ((100% - #{$i} * #{$gutter-x}) / #{$i + 1}) + #{$j - 1} * #{$gutter-x});
             }
         }
     }
-}
-
-[class^="col--"] {
-    float: left;
-
-    &:not(:last-of-type) {
-        margin-right: $gutter-x;
+    
+    @at-root [class^="col--"] {
+        background-color: royalblue;
+        float: left;
+    
+        &:not(:last-of-type) {
+            margin-right: $gutter-x;
+        }
     }
 }
