@@ -28,7 +28,6 @@ $gutter-y: .5rem;
     }
     
     @at-root [class^="col--"] {
-        background-color: royalblue;
         float: left;
     
         &:not(:last-of-type) {
