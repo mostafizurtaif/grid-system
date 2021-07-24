@@ -11,7 +11,7 @@ $gutter-y: .5rem;
 }
 
 
-// MAIN RULES.row {
+// MAIN RULES
 .row {
     &:not(:last-of-type) {
         margin-bottom: $gutter-y;
@@ -21,17 +21,29 @@ $gutter-y: .5rem;
 
     @for $i from 3 through 1 {
         @for $j from 1 through $i {
-            @at-root .col--#{$j}of#{($i + 1)} {
+            @at-root .col-#{$j}of#{($i + 1)} {
                 width: calc(#{$j} * ((100% - #{$i} * #{$gutter-x}) / #{$i + 1}) + #{$j - 1} * #{$gutter-x});
             }
         }
     }
     
-    @at-root [class^="col--"] {
+    @at-root [class^="col-"] {
         float: left;
     
         &:not(:last-of-type) {
             margin-right: $gutter-x;
         }
     }
+
+    &--gutter-x-none {
+        @for $i from 1 through 3 {
+            @for $j from 1 through $i {
+                & > .col-#{$j}of#{$i + 1} {
+                    width: calc((100% / #{$i + 1}) * #{$j});
+                    margin-right: 0;
+                }
+            }
+        }
+    }
 }
+
