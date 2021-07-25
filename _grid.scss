@@ -1,7 +1,9 @@
-// from _variables.scss and _mixins.scss
+// FROM _variables.scss
 $gutter-x: 1rem;
 $gutter-y: .5rem;
+$grid-width-default: 114rem;
 
+// FROM _mixins.scss
 @mixin clearfix {
     &::after {
         content: "";
@@ -10,14 +12,18 @@ $gutter-y: .5rem;
     }
 }
 
-
 // MAIN RULES
 .row {
-    &:not(:last-of-type) {
+    &:not(&:last-of-type) {
         margin-bottom: $gutter-y;
     }
 
     @include clearfix;
+
+    &--default {
+        width: $grid-width-default;
+        margin: 0 auto;
+    }
 
     @for $i from 3 through 1 {
         @for $j from 1 through $i {
@@ -28,22 +34,11 @@ $gutter-y: .5rem;
     }
     
     @at-root [class^="col-"] {
+        // background-color: #eee;
         float: left;
     
-        &:not(:last-of-type) {
+        &:not(&:last-of-type) {
             margin-right: $gutter-x;
         }
     }
-
-    &--gutter-x-none {
-        @for $i from 1 through 3 {
-            @for $j from 1 through $i {
-                & > .col-#{$j}of#{$i + 1} {
-                    width: calc((100% / #{$i + 1}) * #{$j});
-                    margin-right: 0;
-                }
-            }
-        }
-    }
 }
-
