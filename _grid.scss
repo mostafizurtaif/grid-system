@@ -21,7 +21,7 @@ $grid-width-default: 114rem;
     @include clearfix;
 
     &--default {
-        width: $grid-width-default;
+        max-width: $grid-width-default;
         margin: 0 auto;
     }
 
@@ -34,7 +34,7 @@ $grid-width-default: 114rem;
     }
     
     @at-root [class^="col-"] {
-        // background-color: #eee;
+        // background-color: #aaa;
         float: left;
     
         &:not(&:last-of-type) {
