@@ -27,14 +27,13 @@ $grid-width-default: 114rem;
 
     @for $i from 3 through 1 {
         @for $j from 1 through $i {
-            @at-root .col-#{$j}of#{($i + 1)} {
+            @at-root .row__col-#{$j}of#{($i + 1)} {
                 width: calc(#{$j} * ((100% - #{$i} * #{$gutter-x}) / #{$i + 1}) + #{$j - 1} * #{$gutter-x});
             }
         }
     }
     
-    @at-root [class^="col-"] {
-        // background-color: #aaa;
+    @at-root [class^="row__col-"] {
         float: left;
     
         &:not(&:last-of-type) {
